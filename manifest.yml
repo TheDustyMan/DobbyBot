@@ -1,0 +1,8 @@
+applications:
+- name: DobbyBackendApplication
+  host: dobbybackend
+  memory: 1G
+  instances: 1
+  disk_quota: 1G
+  buildpack: java_buildpack
+  path: target/demo-0.0.1-SNAPSHOT.jar
