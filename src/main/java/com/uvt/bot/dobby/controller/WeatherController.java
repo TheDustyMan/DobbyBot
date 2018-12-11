@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.uvt.bot.dobby.model.DTO.JsonBodies.WeatherBody;
 import com.uvt.bot.dobby.model.DTO.JsonResponse;
 import com.uvt.bot.dobby.model.DTO.RecastMessage;
+import com.uvt.bot.dobby.model.DTO.RecastReply;
 import com.uvt.bot.dobby.model.DTO.TextResponse;
 import com.uvt.bot.dobby.services.WeatherService;
 import org.slf4j.Logger;
@@ -27,18 +28,24 @@ public class WeatherController {
     }
 
     @PostMapping ("/getWeather")
-    public RecastMessage getWeather(@RequestBody JsonNode jsonNode){
+    public RecastReply getWeather(@RequestBody JsonNode jsonNode){
+
+        return getRecastMessage(jsonNode);
+    }
+
+
+    private RecastReply getRecastMessage(JsonNode jsonNode) {
 
         String location = jsonNode.findValue("raw").asText() + "," + jsonNode.findValue("country").asText();
         WeatherBody weatherBody = weatherService.getWeather(location);
 
         String content = weatherBody.getTemperature() + "\n"+ weatherBody.getWeatherType();
 
-        RecastMessage recastMessage = new RecastMessage(new ArrayList<JsonResponse>());
+        RecastReply recastReply = new RecastReply(new ArrayList<JsonResponse>());
 
-        recastMessage.getMessages().add(new TextResponse("text", content));
+        recastReply.getReplies().add(new TextResponse("text", content));
 
-        return recastMessage;
+        return recastReply;
     }
 
 }
