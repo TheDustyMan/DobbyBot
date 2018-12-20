@@ -1,5 +1,6 @@
 package com.uvt.bot.dobby.model.DTO;
 
+import com.uvt.bot.dobby.model.DTO.messageType.JsonMessage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -9,5 +10,5 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class RecastMessage {
 
-    private ArrayList<JsonResponse> messages;
+    private ArrayList<JsonMessage> messages;
 }

@@ -18,7 +18,7 @@ public class WeatherService {
     private final static String API = "http://api.openweathermap.org/data/2.5/weather?q=";
     private final static String APPID = "f28d2c1d609bc692988c3ed377fbd01f";
     private final static String ERROR_MSG = "I don't know the weather today!";
-    private static DecimalFormat format2Decimals = new DecimalFormat(".##");
+    private static DecimalFormat format2Decimals = new DecimalFormat(".#");
     private RestTemplate restTemplate;
 
     @Autowired

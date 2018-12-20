@@ -44,7 +44,7 @@
         <profile>
             <id>cf</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <packaging.type>jar</packaging.type>

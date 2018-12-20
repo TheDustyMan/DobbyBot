@@ -2,10 +2,9 @@ package com.uvt.bot.dobby.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.uvt.bot.dobby.model.DTO.JsonBodies.WeatherBody;
-import com.uvt.bot.dobby.model.DTO.JsonResponse;
-import com.uvt.bot.dobby.model.DTO.RecastMessage;
+import com.uvt.bot.dobby.model.DTO.messageType.JsonMessage;
 import com.uvt.bot.dobby.model.DTO.RecastReply;
-import com.uvt.bot.dobby.model.DTO.TextResponse;
+import com.uvt.bot.dobby.model.DTO.messageType.TextMessage;
 import com.uvt.bot.dobby.services.WeatherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,9 +40,9 @@ public class WeatherController {
 
         String content = weatherBody.getTemperature() + "\n"+ weatherBody.getWeatherType();
 
-        RecastReply recastReply = new RecastReply(new ArrayList<JsonResponse>());
+        RecastReply recastReply = new RecastReply(new ArrayList<JsonMessage>());
 
-        recastReply.getReplies().add(new TextResponse("text", content));
+        recastReply.getReplies().add(new TextMessage( content));
 
         return recastReply;
     }
