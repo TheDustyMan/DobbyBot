@@ -1,13 +1,15 @@
 package com.uvt.bot.dobby.model.DTO.JsonBodies;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class WeatherBody {
 
-    private final String temperature;
+    private  String temperature;
 
-    private final String weatherType;
+    private  String weatherType;
 
 
 }

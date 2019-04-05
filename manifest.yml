@@ -1,6 +1,6 @@
 applications:
 - name: DobbyBackendApplication
-  host: dobbybackend
+  host: dobbybackend-dev
   memory: 1G
   instances: 1
   disk_quota: 1G

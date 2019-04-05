@@ -26,9 +26,8 @@ public class WeatherService {
         this.restTemplate = restTemplate;
     }
 
-    public String addLocation(String location) {
-        String finalLocation = API + location + "&APPID=" + APPID;
-        return finalLocation;
+    private String addLocation(String location) {
+        return API + location + "&APPID=" + APPID;
     }
 
     public WeatherBody getWeather(String location) {
