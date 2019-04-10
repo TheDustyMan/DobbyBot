@@ -1,7 +1,7 @@
 package com.uvt.bot.dobby.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.uvt.bot.dobby.model.DTO.JsonBodies.WeatherBody;
+import com.uvt.bot.dobby.model.DTO.jsonBodies.WeatherBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +26,8 @@ public class WeatherService {
         this.restTemplate = restTemplate;
     }
 
-    public String addLocation(String location) {
-        String finalLocation = API + location + "&APPID=" + APPID;
-        return finalLocation;
+    private String addLocation(String location) {
+        return API + location + "&APPID=" + APPID;
     }
 
     public WeatherBody getWeather(String location) {

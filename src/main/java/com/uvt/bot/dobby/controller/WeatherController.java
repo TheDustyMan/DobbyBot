@@ -1,50 +1,40 @@
 package com.uvt.bot.dobby.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.uvt.bot.dobby.model.DTO.JsonBodies.WeatherBody;
-import com.uvt.bot.dobby.model.DTO.messageType.JsonMessage;
+import com.uvt.bot.dobby.facades.WeatherFacade;
 import com.uvt.bot.dobby.model.DTO.RecastReply;
-import com.uvt.bot.dobby.model.DTO.messageType.TextMessage;
-import com.uvt.bot.dobby.services.WeatherService;
+import com.uvt.bot.dobby.model.DTO.recastRequest.RecastRequestDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class WeatherController {
 
     private static final Logger logger = LoggerFactory.getLogger(WeatherController.class);
-    private WeatherService weatherService;
-    private  RestTemplate restTemplate;
+    private WeatherFacade weatherFacade;
 
     @Autowired
-    WeatherController(WeatherService weatherService){
-        this.weatherService = weatherService;
+    WeatherController(WeatherFacade weatherFacade){
+        this.weatherFacade = weatherFacade;
     }
 
     @PostMapping ("/getWeather")
-    public RecastReply getWeather(@RequestBody JsonNode jsonNode){
+    public RecastReply getWeather(@RequestBody RecastRequestDTO recastRequestDTO){
 
-        return getRecastMessage(jsonNode);
+        logger.info(recastRequestDTO.toString());
+        return weatherFacade.getRecastMessage(recastRequestDTO);
+    }
+
+    @GetMapping("/ping")
+    public String ping(){
+        return "pong";
     }
 
 
-    private RecastReply getRecastMessage(JsonNode jsonNode) {
 
-        String location = jsonNode.findValue("raw").asText() + "," + jsonNode.findValue("country").asText();
-        WeatherBody weatherBody = weatherService.getWeather(location);
-
-        String content = weatherBody.getTemperature() + "\n"+ weatherBody.getWeatherType();
-
-        RecastReply recastReply = new RecastReply(new ArrayList<JsonMessage>());
-
-        recastReply.getReplies().add(new TextMessage( content));
-
-        return recastReply;
-    }
 
 }
