@@ -1,6 +1,6 @@
 package com.uvt.bot.dobby.controller;
 
-import com.uvt.bot.dobby.model.DTO.JsonBodies.MovieSugestionBody;
+import com.uvt.bot.dobby.model.DTO.jsonBodies.MovieSugestionBody;
 import com.uvt.bot.dobby.services.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

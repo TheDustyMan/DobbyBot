@@ -1,4 +1,4 @@
-package com.uvt.bot.dobby.model.DTO.JsonBodies;
+package com.uvt.bot.dobby.model.DTO.jsonBodies;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

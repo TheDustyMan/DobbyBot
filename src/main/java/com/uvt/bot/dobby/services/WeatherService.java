@@ -1,7 +1,7 @@
 package com.uvt.bot.dobby.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.uvt.bot.dobby.model.DTO.JsonBodies.WeatherBody;
+import com.uvt.bot.dobby.model.DTO.jsonBodies.WeatherBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
