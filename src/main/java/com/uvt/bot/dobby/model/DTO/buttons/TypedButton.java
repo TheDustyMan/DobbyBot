@@ -2,14 +2,15 @@ package com.uvt.bot.dobby.model.DTO.buttons;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
 public class TypedButton implements Button{
 
-    private final String title;
+    private String title;
 
-    private final String type;
+    private String type;
 
-    private final String value;
+    private String value;
 }

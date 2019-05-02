@@ -1,4 +1,11 @@
 package com.uvt.bot.dobby.model.DTO.jsonBodies;
 
-public class MovieResultDTO {
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class MovieResponseDTO {
+
+    private List<MovieResultDTO> results;
 }

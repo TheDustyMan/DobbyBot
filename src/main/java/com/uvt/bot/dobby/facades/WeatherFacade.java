@@ -7,11 +7,12 @@ import com.uvt.bot.dobby.model.DTO.messageType.TextMessage;
 import com.uvt.bot.dobby.model.DTO.recastRequest.RecastRequestDTO;
 import com.uvt.bot.dobby.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
+@Component
 public class WeatherFacade {
 
     private WeatherService weatherService;
