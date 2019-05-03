@@ -16,8 +16,6 @@ import java.util.Set;
 public class DobbyList {
 
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
     private String name;
@@ -30,8 +28,7 @@ public class DobbyList {
 
     protected DobbyList() {}
 
-    public DobbyList(String name, String date){
-        this.name = name;
+    public DobbyList(String date){
         this.date = date;
         items = new ArrayList<>() ;
     }

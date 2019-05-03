@@ -1,43 +1,38 @@
 package com.uvt.bot.dobby.controller;
 
-import com.uvt.bot.dobby.model.entity.Expense;
-import com.uvt.bot.dobby.repository.ExpensesRepository;
-import com.uvt.bot.dobby.services.WeatherService;
+import com.uvt.bot.dobby.model.DTO.RecastReply;
+import com.uvt.bot.dobby.model.DTO.recastRequest.RecastRequestDTO;
+import com.uvt.bot.dobby.services.EntityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
-
+@RestController
 public class ExpensesController {
 
     private static final Logger logger = LoggerFactory.getLogger(ExpensesController.class);
-    private ExpensesRepository expensesRepository;
+    private EntityService entityService;
 
     @Autowired
-    ExpensesController(ExpensesRepository expensesRepository){
-        this.expensesRepository = expensesRepository;
+    ExpensesController(EntityService entityService){
+        this.entityService = entityService;
     }
 
-    /*@GetMapping("/getExpense")
-    public List<Expense> getExpense(@RequestBody CustomDate date){
-
-        return expensesRepository.getCustomDate();
-    }*/
+    @PostMapping("/getExpense")
+    public RecastReply getExpense(@RequestBody RecastRequestDTO recastRequestDTO){
+        return null;
+    }
 
     @PostMapping("/createExpense")
-    public Expense createExpense(@RequestBody Expense expense){
-        return expensesRepository.save(expense);
+    public RecastReply createExpense(@RequestBody RecastRequestDTO recastRequestDTO){
+        return null;
     }
 
-    @DeleteMapping("/deleteExpense")
-    public void deleteExpense(@RequestBody Expense expense){
-        Optional<Expense> expenseToDelete = expensesRepository.findById(expense.getId());
-        expensesRepository.delete(expenseToDelete.get());
+    @PostMapping("/deleteExpense")
+    public RecastReply deleteExpense(@RequestBody RecastRequestDTO recastRequestDTO){
+        return null;
     }
 }

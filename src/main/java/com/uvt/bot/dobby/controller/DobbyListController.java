@@ -1,8 +1,11 @@
 package com.uvt.bot.dobby.controller;
 
+import com.uvt.bot.dobby.model.DTO.RecastReply;
+import com.uvt.bot.dobby.model.DTO.recastRequest.RecastRequestDTO;
 import com.uvt.bot.dobby.model.entity.DobbyList;
 import com.uvt.bot.dobby.model.entity.DobbyListItem;
 import com.uvt.bot.dobby.repository.DobbyListRepository;
+import com.uvt.bot.dobby.services.EntityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,45 +19,25 @@ import java.util.Set;
 public class DobbyListController {
 
     private static final Logger logger = LoggerFactory.getLogger(DobbyListController.class);
-    private DobbyListRepository dobbyListRepository;
+    private EntityService entityService;
 
     @Autowired
-    DobbyListController(DobbyListRepository dobbyListRepository) {
-        this.dobbyListRepository = dobbyListRepository;
+    DobbyListController(EntityService entityService) {
+        this.entityService = entityService;
     }
 
-    @GetMapping("/getDobbyList/{id}")
-    public Optional<DobbyList> getDobbyList(@PathVariable String id) {
-        return dobbyListRepository.findById(id);
-    }
-
-    @GetMapping("/getDobbyList")
-    public Iterable<DobbyList> getAllDobbyLists() {
-        return dobbyListRepository.findAll();
+    @PostMapping("/getDobbyList")
+    public RecastReply getDobbyList(@RequestBody RecastRequestDTO recastRequestDTO) {
+        return entityService.getList(recastRequestDTO);
     }
 
     @PostMapping("/createDobbyList")
-    public DobbyList createNewDobbyList(@RequestBody DobbyList dobbyList) {
-        return dobbyListRepository.save(dobbyList);
+    public void createNewDobbyList(@RequestBody RecastRequestDTO recastRequestDTO) {
+        entityService.createList(recastRequestDTO);
     }
 
-    @PutMapping("/updateDobbyList/{id}")
-    public DobbyList updateDobbyList(@RequestBody DobbyList dobbyList, @PathVariable String id) {
-        Optional<DobbyList> list = dobbyListRepository.findById(id);
-        list.get()
-                .getItems()
-                .addAll(dobbyList.getItems());
-        return dobbyListRepository.save(list.get());
-
-    }
-
-    @DeleteMapping("/deleteDobbyList/{id}")
-    public String deleteDobbyList(@PathVariable String id){
-        Optional<DobbyList> list = dobbyListRepository.findById(id);
-        if (list.isPresent()) {
-            dobbyListRepository.delete(list.get());
-            return "SUCCESS";
-        }
-        else return "FAIL";
+    @PostMapping("/deleteDobbyList")
+    public RecastReply deleteDobbyList(@RequestBody RecastRequestDTO recastRequestDTO){
+        return entityService.deleteList(recastRequestDTO);
     }
 }
