@@ -14,6 +14,7 @@ public class ExpenseItem {
     @GeneratedValue
     private Long itemsId;
 
-    private Float value;
+    private String value;
     private String date;
+    private Double doubleValue;
 }

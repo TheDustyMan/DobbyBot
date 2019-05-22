@@ -18,12 +18,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class EntityService {
+public class DobbyListService {
 
     private DobbyListRepository dobbyListRepository;
 
     @Autowired
-    public EntityService(DobbyListRepository dobbyListRepository){
+    public DobbyListService(DobbyListRepository dobbyListRepository){
         this.dobbyListRepository = dobbyListRepository;
     }
 

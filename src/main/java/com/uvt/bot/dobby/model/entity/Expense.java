@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,4 +20,10 @@ public class Expense {
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "EXPENSE_ID")
     private List<ExpenseItem> items ;
+
+    private Double value;
+
+    public Expense(){
+        items = new ArrayList<>();
+    }
 }
