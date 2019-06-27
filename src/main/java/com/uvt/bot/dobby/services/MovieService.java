@@ -56,7 +56,7 @@ public class MovieService {
             case "western":
                 return "37";
             default:
-                return "";
+                return "35";
         }
     }
 }
